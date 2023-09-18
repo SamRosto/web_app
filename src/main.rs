@@ -1,4 +1,7 @@
 use actix_web::{App, HttpServer};
+use actix_service::Service;
+
+mod jwt;
 mod views;
 mod to_do;
 mod processes;
@@ -10,6 +13,14 @@ mod json_serialization;
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let app = App::new()
+            .wrap_fn(|req, srv| {
+                println!("{:?}", req);
+                let future = srv.call(req);
+                async {
+                    let result = future.await?;
+                    Ok(result)
+                }
+            })
             .configure(views::views_factory);
         app
     })
