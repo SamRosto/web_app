@@ -2,7 +2,7 @@
 
 use serde::ser::{Serialize, Serializer, SerializeStruct};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum TaskStatus {
     DONE,
     PENDING,
@@ -17,7 +17,7 @@ impl TaskStatus {
         }
     }
 
-    pub fn from_string(status: &String) -> Self {
+    pub fn from_string(status: String) -> Self {
         match status.as_str() {
             "DONE" => TaskStatus::DONE,
             "PENDING" => TaskStatus::PENDING,

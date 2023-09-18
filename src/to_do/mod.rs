@@ -6,6 +6,7 @@ use enums::TaskStatus;
 use structs::done::Done;
 use structs::pending::Pending;
 
+#[derive(Debug)]
 pub enum ItemTypes {
     Done(Done),
     Pending(Pending),

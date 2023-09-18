@@ -1,7 +1,7 @@
 /// Define what is returned to the viewer when `get` view is called 
 /// in the current file
 
-use serde::{Serialize};
+use serde::Serialize;
 use serde_json::value::Value;
 use serde_json::Map;
 
@@ -53,7 +53,7 @@ impl ToDoItems {
         let mut arr_buffer = Vec::new();
 
         for (key, value) in state {
-            let status = TaskStatus::from_string(&value.as_str().unwrap().to_string());
+            let status = TaskStatus::from_string(value.as_str().unwrap().to_string());
             let item = to_do_factory(&key, status);
             arr_buffer.push(item);
         }

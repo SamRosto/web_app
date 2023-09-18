@@ -28,7 +28,7 @@ fn process_done(item: Done, cmd: String, state: &Map<String, Value>) {
         "get" => item.get(&item.super_struct.title, &state),
         "delete" => item.delete(&item.super_struct.title, &mut state),
         "edit" => item.set_to_pending(&item.super_struct.title, &mut state),
-        _ => println!("{cmd} not supportes"),
+        _ => println!("{cmd} not supported"),
     }
 }
 
