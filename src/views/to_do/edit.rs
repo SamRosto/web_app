@@ -1,6 +1,4 @@
-#![allow(warnings)]
-
-use std::fs::read;
+use crate::jwt::JwToken;
 
 use actix_web::{web, HttpResponse};
 use serde_json::value::Value;
@@ -18,7 +16,8 @@ use crate::processes::process_input;
 /// 5. Pass the existing item into the `process_input` function with `edit` command so it is saved to the JSON state file
 /// 6. Get the state of the application and return it
 
-pub async fn edit(item: web::Json<ToDoItem>) -> HttpResponse {
+pub async fn edit(item: web::Json<ToDoItem>, token: JwToken) -> HttpResponse {
+    println!("Message in the token: {}", token.message);
     let state: Map<String, Value> = read_file("./state.json");
     let status: TaskStatus;
 
